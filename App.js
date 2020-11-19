@@ -11,7 +11,12 @@ import {
   TextInput,
   FlatList,
 } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import GameScreen from "./screens/GameScreen";
+import HomeScreen from "./components/HomeScreen";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   const randomNum = useRef(Math.random()).current;
@@ -61,7 +66,12 @@ export default function App() {
   }
 
   return (
-    <GameScreen />
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Game" component={GameScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
     // <View
     //   style={{
     //     height: "100%",

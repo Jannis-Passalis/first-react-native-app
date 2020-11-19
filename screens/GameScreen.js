@@ -3,9 +3,10 @@ import { View, Text, Button, Alert, Share } from "react-native";
 import { DeviceMotion } from "expo-sensors";
 import MyButton from "../components/MyButton";
 
-export default function GameScreen() {
+export default function GameScreen({ route, navigation }) {
   const [paused, set_paused] = useState(false);
   const [color, set_color] = useState("white");
+  const { count } = route.params;
 
   useEffect(() => {
     DeviceMotion.setUpdateInterval(250);
@@ -75,6 +76,13 @@ export default function GameScreen() {
         onPress={() => {
           share(color);
         }}
+      />
+      <Text style={{ fontWeight: "bold", fontSize: 20 }}>
+        Times i've been here: {count}
+      </Text>
+      <Button
+        title="Go to Home"
+        onPress={() => navigation.navigate("Home", { count: count + 1 })}
       />
     </View>
   );
