@@ -13,10 +13,22 @@ import {
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import GameScreen from "./screens/GameScreen";
 import HomeScreen from "./components/HomeScreen";
+import AboutScreen from "./components/AboutScreen";
 
 const Stack = createStackNavigator();
+const Tab = createMaterialTopTabNavigator();
+
+function GameTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Play" component={GameScreen} />
+      <Tab.Screen name="About" component={AboutScreen} />
+    </Tab.Navigator>
+  );
+}
 
 export default function App() {
   const randomNum = useRef(Math.random()).current;
@@ -69,7 +81,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Game" component={GameScreen} />
+        <Stack.Screen name="Game" component={GameTabs} />
       </Stack.Navigator>
     </NavigationContainer>
     // <View

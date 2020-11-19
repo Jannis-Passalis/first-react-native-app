@@ -18,6 +18,7 @@ export default function MyButton({ title, onPress }) {
           toValue: 1,
           speed: 50,
           bounciness: 10,
+          useNativeDriver: false,
         }).start();
         console.log("user pressed my button");
       }}
@@ -26,6 +27,7 @@ export default function MyButton({ title, onPress }) {
           toValue: 0,
           speed: 30,
           bounciness: 25,
+          useNativeDriver: false,
         }).start();
         console.log("user released my button");
       }}
